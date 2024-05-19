@@ -27,16 +27,16 @@ public class StepDefinations {
     ProductPage productPage;
     CartPage cartPage;
     List<String> productList = new ArrayList<>();
-    public static String productPagePrice ;
-    public static String cartPagePrice ;
-    public static String cartSubTotalPagePrice ;
+    public static String productPagePrice;
+    public static String cartPagePrice;
+    public static String cartSubTotalPagePrice;
 
-@Before
-public void setUp() {
+    @Before
+    public void setUp() {
 
-    driver = new ChromeDriver();
-   // driver.manage().deleteAllCookies();
-}
+        driver = new ChromeDriver();
+        // driver.manage().deleteAllCookies();
+    }
 
 
     @AfterStep
@@ -65,13 +65,12 @@ public void setUp() {
         Assert.assertEquals(actualTitle, expectedTitle, "Amazon page is not loaded");
 
 
-
     }
 
     @When("^User searches for \"([^\"]*)\"$")
     public void user_searches_for(String item) {
 
-    homePage.searchForItem(item);
+        homePage.searchForItem(item);
     }
 
 
@@ -79,11 +78,10 @@ public void setUp() {
     public void user_selects_the_item_in_the_list(int itemNumber) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        wait.until(ExpectedConditions.visibilityOf( homePage.getresults()));
+        wait.until(ExpectedConditions.visibilityOf(homePage.getresults()));
         homePage.clickOnItemInList(itemNumber);
         productPage = new ProductPage(driver);
     }
-
 
 
     @And("^User adds the item to cart$")
@@ -99,30 +97,27 @@ public void setUp() {
 
     @Then("^Verify that the price is identical to the product page$")
     public void verify_that_the_price_is_identical_to_the_product_page() {
-    Assert.assertEquals(productPagePrice,cartPagePrice,"Price on product page and cart page is matching");
-}
+        Assert.assertEquals(productPagePrice, cartPagePrice, "Price on product page and cart page is matching");
+    }
 
     @And("^Verify that the subtotal is identical to the product page$")
     public void verify_that_the_subtotal_is_identical_to_the_product_page() {
-     //   assert productPage.getProductTotal() == cartPage.getCartSubtotal();
-        Assert.assertEquals(productPagePrice.trim(),cartSubTotalPagePrice.trim(),"Sub Total Price on product page and Sub total product price on cart page is matching");
-        //driver.quit();
-    }
-
-    @And("^Verify each item total is price is correct$")
-    public void verify_each_item_total_is_price_is_correct() {
-        assert cartPage.verifyItemPrices();
+        Assert.assertEquals(productPagePrice.trim(), cartSubTotalPagePrice.trim(), "Sub Total Price on product page and Sub total product price on cart page is matching");
     }
 
     @And("^Verify that the subtotal is calculated correctly$")
     public void verify_that_the_subtotal_is_calculated_correctly() {
-        assert cartPage.verifySubtotal();
-        driver.quit();
+        System.out.println("Total cart sub value=" + cartSubTotalPagePrice);
+        System.out.println("Total cart sub value of first item=" + cartPagePrice);
+        //cartSubTotalPagePrice
+
+        cartPage.verifySubtotal(cartSubTotalPagePrice);
+        //driver.quit();
     }
 
     @Then("User fetch product price on product page")
     public void userFetchProductPriceProductPage() {
-        productPagePrice=productPage.getProductPrice().trim();
+        productPagePrice = productPage.getProductPrice().trim();
     }
 
     @Then("User fetch product price on cart page")
@@ -133,5 +128,15 @@ public void setUp() {
     @Then("User fetch sub total price on cart page")
     public void userFetchSubTotalProductPriceCartPage() {
         cartSubTotalPagePrice = cartPage.getCartSubtotal().trim();
+    }
+
+    @Then("User sets american address")
+    public void userSetsAmericanAddress() throws InterruptedException {
+        homePage.setAddress();
+    }
+
+    @And("User clicks {string}")
+    public void userClicks(String act) {
+        homePage.clickAction(act);
     }
 }

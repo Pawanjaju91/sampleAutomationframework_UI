@@ -48,13 +48,29 @@ public class CartPage {
         return cartProductSubTotalPrice;
     }
 
-    public boolean verifyItemPrices() {
-        // Implementation to verify that each item total price in the cart is correct
-        return true;
-    }
 
-    public boolean verifySubtotal() {
+    public boolean verifySubtotal(String totalcartvalue) {
         // Implementation to verify that the subtotal is calculated correctly
-        return true;
+        String totalcartvaluetext = totalcartvalue.replace("$", "");
+        double cartValueTotal = Double.parseDouble(totalcartvaluetext);
+
+        List<WebElement> cartlist = driver.findElements(By.xpath("//*[contains(@class,\"sc-product-price a-text-bold\")]"));
+
+        String cartProductSubTotalPriceOne = (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].textContent;", cartlist.get(0));
+        System.out.println("sub Total for product one=" + cartProductSubTotalPriceOne);
+        String cartProductSubTotalPriceTwo = (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].textContent;", cartlist.get(1));
+        System.out.println("sub Total for product two=" + cartProductSubTotalPriceTwo);
+
+        cartProductSubTotalPriceOne = cartProductSubTotalPriceOne.replace("$", "");
+        cartProductSubTotalPriceTwo = cartProductSubTotalPriceTwo.replace("$", "");
+
+        double cartOne = Double.parseDouble(cartProductSubTotalPriceOne);
+        double cartTwo = Double.parseDouble(cartProductSubTotalPriceTwo);
+        if (cartOne + cartTwo == cartValueTotal) {
+            System.out.println("Sub Totals of two items are equal to final subtotal");
+            return true;
+        } else
+            return false;
+
     }
 }
