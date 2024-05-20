@@ -23,8 +23,8 @@ public class HomePage {
     }
 
     public void navigateToHomePage() {
-        driver.get("https://www.amazon.com/");
-        //driver.get("https://www.amazon.com/s?k=Laptop");
+        //driver.get("https://www.amazon.com/");
+        driver.get("https://www.amazon.com/s?k=Laptop");
     }
 
     public WebElement getresults() {
@@ -61,18 +61,19 @@ public class HomePage {
 
         action.sendKeys(Keys.TAB);
         action.sendKeys(Keys.ENTER);
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
         action.sendKeys(Keys.ESCAPE);
         action.perform();
 
     }
 
-    public void clickAction(String keystroke) {
+    public void clickAction(String keystroke) throws InterruptedException {
         Actions action = new Actions(driver);
         String act = keystroke;
         action.sendKeys(Keys.ESCAPE);
         action.perform();
+        Thread.sleep(5000);
     }
 }
 

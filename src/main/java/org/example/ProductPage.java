@@ -26,6 +26,9 @@ public class ProductPage {
     }
 
     public void navigateToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(cartButton)));
         driver.findElement(cartButton).click();
     }
 

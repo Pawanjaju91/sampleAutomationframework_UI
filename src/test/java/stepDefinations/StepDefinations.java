@@ -133,7 +133,7 @@ public class StepDefinations {
     }
 
     @And("User clicks {string}")
-    public void userClicks(String act) {
+    public void userClicks(String act) throws InterruptedException {
         homePage.clickAction(act);
     }
 }

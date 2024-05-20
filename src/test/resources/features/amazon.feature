@@ -18,10 +18,12 @@ Feature: Amazon Shopping
   @scenario2
   Scenario: Adding a Laptop Item in Cart and verifying subtotal
     Given User is on the Amazon website
+    Then User sets american address
     When User searches for "Laptop"
     And User selects the 2st item in the List
     Then User fetch product price on product page
     And User adds the item to cart
+    And User clicks "ESCAPE"
     And User opens the Cart
     Then User fetch product price on cart page
     Then User fetch sub total price on cart page
@@ -36,10 +38,10 @@ Feature: Amazon Shopping
     And User selects the 1st item in the List
     Then User fetch product price on product page
     And User adds the item to cart
+    And User clicks "ESCAPE"
     And User opens the Cart
     Then User fetch product price on cart page
     Then User fetch sub total price on cart page
-    Then Verify that the price is identical to the product page
 
     When User searches for "Keyboard"
     And User selects the 1st item in the List
@@ -49,5 +51,5 @@ Feature: Amazon Shopping
     And User opens the Cart
     Then User fetch product price on cart page
     Then User fetch sub total price on cart page
-    Then Verify that the price is identical to the product page
     Then Verify that the subtotal is calculated correctly
+    Then Verify that the price is identical to the product page
