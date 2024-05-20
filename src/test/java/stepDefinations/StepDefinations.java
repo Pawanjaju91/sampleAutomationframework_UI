@@ -9,9 +9,7 @@ import io.cucumber.java.en.*;
 import org.example.CartPage;
 import org.example.HomePage;
 import org.example.ProductPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +24,6 @@ public class StepDefinations {
     HomePage homePage;
     ProductPage productPage;
     CartPage cartPage;
-    List<String> productList = new ArrayList<>();
     public static String productPagePrice;
     public static String cartPagePrice;
     public static String cartSubTotalPagePrice;
@@ -48,7 +45,7 @@ public class StepDefinations {
     @After
     public void teardown() {
 
-        //driver.quit();
+        driver.quit();
     }
 
     @Given("^User is on the Amazon website$")

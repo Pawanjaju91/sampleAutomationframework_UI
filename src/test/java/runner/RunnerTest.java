@@ -7,8 +7,9 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"stepDefinations"},
         plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json"},
         monochrome = true,
-        tags = "@scenario3",
+        tags = "@scenario1",
         publish = true)
 
-public class TestRunner extends AbstractTestNGCucumberTests {
+
+public class RunnerTest extends AbstractTestNGCucumberTests {
 }

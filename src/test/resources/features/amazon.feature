@@ -1,6 +1,6 @@
 Feature: Amazon Shopping
 
-Feature: Adding a Monitor Item in Cart and verifying subtotal
+  Scenario: Adding a Monitor Item in Cart and verifying subtotal
 
   @scenario1
   Scenario: Adding a Monitor Item in Cart and verifying subtotal

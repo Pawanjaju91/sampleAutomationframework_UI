@@ -23,9 +23,8 @@ public class HomePage {
     }
 
     public void navigateToHomePage() {
-        //driver.get("https://www.amazon.com/s?k=Laptop");
         driver.get("https://www.amazon.com/");
-
+        //driver.get("https://www.amazon.com/s?k=Laptop");
     }
 
     public WebElement getresults() {
